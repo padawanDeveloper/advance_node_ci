@@ -7,7 +7,7 @@ module.exports = app => {
   app.get('/api/blogs/:id', requireLogin, async (req, res) => {
     const blog = await Blog.findOne({
       _user: req.user.id,
-      _id: req.params.id
+      _id: req.params.id,
     });
 
     res.send(blog);
@@ -25,7 +25,7 @@ module.exports = app => {
     const blog = new Blog({
       title,
       content,
-      _user: req.user.id
+      _user: req.user.id,
     });
 
     try {
