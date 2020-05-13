@@ -13,7 +13,7 @@ afterEach(async () => {
 
 describe('Browser test', () => {
   test('Correct Title', async () => {
-    const text = await page.$eval('a.brand-logo', el => el.innerHTML);
+    const text = await page.getContentOf('a.brand-logo');
 
     expect(text).toEqual('Blogster');
   });
@@ -27,7 +27,7 @@ describe('Browser test', () => {
 
   test('When signed in, shows logout button', async () => {
     await page.login();
-    const text = await page.$eval('a[href="/auth/logout"]', el => el.innerHTML);
+    const text = await page.getContentOf('a[href="/auth/logout"]');
 
     expect(text).toEqual('Logout');
   });
