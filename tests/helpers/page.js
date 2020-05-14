@@ -6,9 +6,10 @@ class CustomPage {
   static async build() {
     const browser = await puppeteer.launch({
       headless: false,
+      args: ['--no-sandbox'],
     });
     const page = await browser.newPage();
-    const customPage = new CustomPage(page);
+    const customPage = new CustomPage(page, browser);
     return new Proxy(customPage, {
       get: function (target, property) {
         return customPage[property] || page[property] || browser[property];
@@ -16,8 +17,9 @@ class CustomPage {
     });
   }
 
-  constructor(page) {
+  constructor(page, browser) {
     this.page = page;
+    this.browser = browser;
   }
 
   async login() {
@@ -30,8 +32,12 @@ class CustomPage {
     await this.page.waitFor('a[href="/auth/logout"]');
   }
 
-  async getContentOf(selector) {
+  async getContentsOf(selector) {
     return this.page.$eval(selector, el => el.innerHTML);
+  }
+
+  close() {
+    return this.browser.close();
   }
 }
 
