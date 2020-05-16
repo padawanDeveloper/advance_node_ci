@@ -4,8 +4,9 @@ const puppeteer = require('puppeteer');
 
 class CustomPage {
   static async build() {
+    //no sandbox to virtual machine
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       args: ['--no-sandbox'],
     });
     const page = await browser.newPage();
@@ -28,7 +29,7 @@ class CustomPage {
 
     await this.page.setCookie({ name: 'session', value: session });
     await this.page.setCookie({ name: 'session.sig', value: sig });
-    await this.page.goto('localhost:3000');
+    await this.page.goto('http://localhost:3000');
     await this.page.waitFor('a[href="/auth/logout"]');
   }
 
