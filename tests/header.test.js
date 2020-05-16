@@ -12,20 +12,20 @@ afterEach(async () => {
 });
 
 describe('Browser test', () => {
-  test('Correct Title', async () => {
+  it('Correct Title', async () => {
     const text = await page.getContentsOf('a.brand-logo');
 
     expect(text).toEqual('Blogster');
   });
 
-  test('', async () => {
+  it('Google authentication', async () => {
     await page.click('.right a');
     const url = await page.url();
 
     expect(url).toMatch(/accounts\.google\.com/);
   });
 
-  test('When signed in, shows logout button', async () => {
+  it('When signed in, shows logout button', async () => {
     await page.login();
     const text = await page.getContentsOf('a[href="/auth/logout"]');
 

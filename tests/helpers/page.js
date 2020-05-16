@@ -2,6 +2,7 @@ const sessionFactory = require('../factories/sesionFactory');
 const userFactory = require('../factories/userFactory');
 const puppeteer = require('puppeteer');
 
+//TODO: ESTEBAN ORTIZ - liberar recursos al terminar los test
 class CustomPage {
   static async build() {
     //no sandbox to virtual machine
