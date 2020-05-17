@@ -4,4 +4,6 @@ module.exports = {
   googleClientSecret: 'xBqHw1HZaRzEPIS-wITKJ61l',
   mongoURI: 'mongodb://localhost:27017/node_advance',
   cookieKey: '123123123',
+  accessKeyId: 'AKIA5PG4W3PB72SJCVXH',
+  secretAccessKey: '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',
 };
